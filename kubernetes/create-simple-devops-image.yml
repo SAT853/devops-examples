@@ -1,0 +1,19 @@
+---
+- hosts: ansible-server
+  #  become: true
+
+  tasks:
+  - name: create docker image using war file
+    command: docker build -t simple-devops-image .
+    args:
+      chdir: /opt/kubernetes
+
+  - name: create tag to image
+    command: docker tag simple-devops-image sat853/simple-devops-image:latest
+
+  - name: push image on to dockerhub
+    command: docker push sat853/simple-devops-image:latest
+
+  - name: remove docker images form ansible server
+    command: docker rmi simple-devops-image sat853/simple-devops-image:latest
+
