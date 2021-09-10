@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sat853-service
+  labels:
+    app: sat853-devops-project
+spec:
+  selector: 
+    app: sat853-devops-project
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 31200
